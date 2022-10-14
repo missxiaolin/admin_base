@@ -17,7 +17,7 @@
         </div>
         <el-dropdown-menu slot="dropdown">
           <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Log Out</el-dropdown-item>
+            <el-dropdown-item>退出</el-dropdown-item>
           </a>
         </el-dropdown-menu>
       </el-dropdown>
@@ -38,7 +38,6 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar',
       'device'
     ])
   },
