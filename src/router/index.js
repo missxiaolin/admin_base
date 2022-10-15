@@ -33,22 +33,22 @@ export const constantRoutes = [
     redirect: '/permission'
   },
   {
-    path: '/permission',
+    path: '/article',
     component: Layout,
-    redirect: '/permission/page',
+    redirect: '/article/list',
     alwaysShow: true, // will always show the root menu
-    name: 'Permission',
+    name: 'article',
     meta: {
-      title: 'Permission',
+      title: 'article',
       icon: 'lock'
     },
     children: [
       {
-        path: 'page',
-        component: () => import('@/views/permission/page'),
-        name: 'PagePermission',
+        path: 'list',
+        component: () => import('@/views/article/page'),
+        name: 'articleList',
         meta: {
-          title: 'Page Permission'
+          title: '文章列表'
         }
       }
     ]
