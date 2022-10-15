@@ -39,7 +39,7 @@ export const constantRoutes = [
     alwaysShow: true, // will always show the root menu
     name: 'article',
     meta: {
-      title: 'article',
+      title: '文章',
       icon: 'lock'
     },
     children: [
