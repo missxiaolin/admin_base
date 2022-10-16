@@ -54,24 +54,30 @@
           <span v-if="row.is_del == 2">隐藏</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" prop="id" align="center" width="300px">
+      <el-table-column label="操作" prop="id" align="center" width="360px">
         <template slot-scope="{row}">
-          <el-button v-if="row.is_topping == 1" type="primary">置顶</el-button>
-          <el-button v-if="row.is_topping == 2" type="primary">取消置顶</el-button>
-          <el-button v-if="row.is_boutique == 2" type="primary">设置精品</el-button>
-          <el-button v-if="row.is_boutique == 1" type="primary">取消精品</el-button>
-          <el-button v-if="row.is_del == 1" type="primary">隐藏</el-button>
-          <el-button v-if="row.is_del == 2" type="primary">显示</el-button>
+          <el-button v-if="row.is_topping == 1" type="primary" @click="articleTopping(row.id, 2)">置顶</el-button>
+          <el-button v-if="row.is_topping == 2" type="primary" @click="articleTopping(row.id, 1)">取消置顶</el-button>
+          <el-button v-if="row.is_boutique == 2" type="primary" @click="articleBoutique(row.id, 1)">设置精品</el-button>
+          <el-button v-if="row.is_boutique == 1" type="primary" @click="articleBoutique(row.id, 2)">取消精品</el-button>
+          <el-button v-if="row.is_del == 1" type="primary" @click="articleDel(row.id, 2)">隐藏</el-button>
+          <el-button v-if="row.is_del == 2" type="primary" @click="articleDel(row.id, 1)">显示</el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <el-pagination :page-size="listQuery.pageSize" :pager-count="11" layout="prev, pager, next" :total="total" @current-change="handleCurrentChange" />
+    <el-pagination
+      :page-size="listQuery.pageSize"
+      :pager-count="11"
+      layout="prev, pager, next"
+      :total="total"
+      @current-change="handleCurrentChange"
+    />
   </div>
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
+import { fetchList, topping, boutique, del } from '@/api/article'
 
 export default {
   name: 'ArticleList',
@@ -132,6 +138,30 @@ export default {
     // 分页
     handleCurrentChange(val) {
       this.listQuery.page = val
+      this.init()
+    },
+    // 是否删除
+    async articleDel(id, status) {
+      await del({
+        id,
+        is_del: status
+      })
+      this.init()
+    },
+    // 是否置顶
+    async articleTopping(id, status) {
+      await topping({
+        id,
+        is_topping: status
+      })
+      this.init()
+    },
+    // 是否精品
+    async articleBoutique(id, status) {
+      await boutique({
+        id,
+        is_boutique: status
+      })
       this.init()
     }
   }

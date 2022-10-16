@@ -13,33 +13,40 @@ export function fetchList(query) {
   })
 }
 
-export function fetchArticle(id) {
+/**
+ * 置顶
+ * @param {*} data
+ * @returns
+ */
+export function topping(data) {
   return request({
-    url: '/vue-element-admin/article/detail',
-    method: 'get',
-    params: { id }
-  })
-}
-
-export function fetchPv(pv) {
-  return request({
-    url: '/vue-element-admin/article/pv',
-    method: 'get',
-    params: { pv }
-  })
-}
-
-export function createArticle(data) {
-  return request({
-    url: '/vue-element-admin/article/create',
+    url: '/adm/article/topping',
     method: 'post',
     data
   })
 }
 
-export function updateArticle(data) {
+/**
+ * 精品设置
+ * @param {*} data
+ * @returns
+ */
+export function boutique(data) {
   return request({
-    url: '/vue-element-admin/article/update',
+    url: '/adm/article/boutique',
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 删除
+ * @param {*} data
+ * @returns
+ */
+export function del(data) {
+  return request({
+    url: '/adm/article/del',
     method: 'post',
     data
   })
