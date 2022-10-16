@@ -56,8 +56,9 @@ export const constantRoutes = [
         component: () => import('@/views/article/add'),
         name: 'articleAdd',
         meta: {
-          title: '添加文章'
-        }
+          title: '文章'
+        },
+        hidden: true
       }
     ]
   }

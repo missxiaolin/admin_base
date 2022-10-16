@@ -1,6 +1,19 @@
 import request from '@/utils/request'
 
 /**
+ * 添加文章
+ * @param {*} data
+ * @returns
+ */
+export function add(data) {
+  return request({
+    url: '/adm/article/save',
+    method: 'post',
+    data
+  })
+}
+
+/**
  * 列表
  * @param {*} query
  * @returns
