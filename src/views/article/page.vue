@@ -14,13 +14,8 @@
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         搜索
       </el-button>
-      <el-button
-        class="filter-item"
-        style="margin-left: 10px;"
-        type="primary"
-        icon="el-icon-edit"
-        @click="handleCreate"
-      >
+      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit"
+        @click="handleCreate">
         添加
       </el-button>
     </div>
@@ -54,25 +49,25 @@
           <span v-if="row.is_del == 2">隐藏</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" prop="id" align="center" width="360px">
+      <el-table-column label="操作" prop="id" align="center" width="370px">
         <template slot-scope="{row}">
-          <el-button v-if="row.is_topping == 1" type="primary" @click="articleTopping(row.id, 2)">置顶</el-button>
-          <el-button v-if="row.is_topping == 2" type="primary" @click="articleTopping(row.id, 1)">取消置顶</el-button>
-          <el-button v-if="row.is_boutique == 2" type="primary" @click="articleBoutique(row.id, 1)">设置精品</el-button>
-          <el-button v-if="row.is_boutique == 1" type="primary" @click="articleBoutique(row.id, 2)">取消精品</el-button>
-          <el-button v-if="row.is_del == 1" type="primary" @click="articleDel(row.id, 2)">隐藏</el-button>
-          <el-button v-if="row.is_del == 2" type="primary" @click="articleDel(row.id, 1)">显示</el-button>
+          <el-button v-if="row.is_topping == 1" size="mini" type="primary" @click="articleTopping(row.id, 2)">置顶
+          </el-button>
+          <el-button v-if="row.is_topping == 2" size="mini" type="primary" @click="articleTopping(row.id, 1)">取消置顶
+          </el-button>
+          <el-button v-if="row.is_boutique == 2" size="mini" type="primary" @click="articleBoutique(row.id, 1)">设置精品
+          </el-button>
+          <el-button v-if="row.is_boutique == 1" size="mini" type="primary" @click="articleBoutique(row.id, 2)">取消精品
+          </el-button>
+          <el-button v-if="row.is_del == 1" size="mini" type="primary" @click="articleDel(row.id, 2)">隐藏</el-button>
+          <el-button v-if="row.is_del == 2" size="mini" type="primary" @click="articleDel(row.id, 1)">显示</el-button>
+          <el-button size="mini" type="primary" @click="articleUpdate(row.id)">修改</el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <el-pagination
-      :page-size="listQuery.pageSize"
-      :pager-count="11"
-      layout="prev, pager, next"
-      :total="total"
-      @current-change="handleCurrentChange"
-    />
+    <el-pagination :page-size="listQuery.pageSize" :pager-count="11" layout="prev, pager, next" :total="total"
+      @current-change="handleCurrentChange" />
   </div>
 </template>
 
@@ -165,6 +160,14 @@ export default {
         is_boutique: status
       })
       this.init()
+    },
+    articleUpdate(id) {
+      this.$router.push({
+        path: '/article/add',
+        query: {
+          id
+        }
+      })
     }
   }
 }

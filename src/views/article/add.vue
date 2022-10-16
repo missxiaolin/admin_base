@@ -8,12 +8,8 @@
         <el-input v-model="form.auth" />
       </el-form-item>
       <el-form-item label="内容：" prop="content">
-        <quill-editor
-          ref="myQuillEditor"
-          v-model="form.content"
-          :options="editorOption"
-          @change="onEditorChange($event)"
-        />
+        <quill-editor ref="myQuillEditor" v-model="form.content" :options="editorOption"
+          @change="onEditorChange($event)" />
       </el-form-item>
       <el-form-item label="类型：">
         <el-radio-group v-model="form.type">
@@ -51,7 +47,7 @@
 
 <script>
 import { quillEditor } from 'vue-quill-editor'
-import { add } from '@/api/article'
+import { add, detail } from '@/api/article'
 
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
@@ -107,6 +103,11 @@ export default {
       }
     }
   },
+  mounted() {
+    if (this.$route.query.id) {
+      this.getDetail(this.$route.query.id)
+    }
+  },
   methods: {
     // 内容改变事件
     onEditorChange({ quill, html, text }) {
@@ -121,6 +122,27 @@ export default {
           return false
         }
       })
+    },
+    async getDetail(id) {
+      let res = await detail({
+        id
+      })
+      if (res.code != 200) {
+        this.$message({
+          message: res.msg,
+          type: 'error',
+          onClose: () => {
+            this.$router.push({
+              path: '/article/list'
+            })
+          }
+        })
+        return
+      }
+      let aData = res.data
+      this.form = {
+        ...aData
+      }
     },
     async articleAdd() {
       const res = await add(this.form)

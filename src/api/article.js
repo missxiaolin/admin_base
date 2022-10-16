@@ -14,6 +14,19 @@ export function add(data) {
 }
 
 /**
+ * 添加文章
+ * @param {*} data
+ * @returns
+ */
+export function detail(data) {
+  return request({
+    url: '/adm/article/detail',
+    method: 'post',
+    data
+  })
+}
+
+/**
  * 列表
  * @param {*} query
  * @returns
