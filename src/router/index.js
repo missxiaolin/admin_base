@@ -50,6 +50,14 @@ export const constantRoutes = [
         meta: {
           title: '文章列表'
         }
+      },
+      {
+        path: 'add',
+        component: () => import('@/views/article/add'),
+        name: 'articleAdd',
+        meta: {
+          title: '添加文章'
+        }
       }
     ]
   }

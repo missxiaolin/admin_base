@@ -133,7 +133,9 @@ export default {
     },
     // 创建文章
     handleCreate() {
-
+      this.$router.push({
+        path: '/article/add'
+      })
     },
     // 分页
     handleCurrentChange(val) {
