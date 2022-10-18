@@ -16,7 +16,7 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
+          <a href="javascript:;" @click="logout">
             <el-dropdown-item>退出</el-dropdown-item>
           </a>
         </el-dropdown-menu>
@@ -29,6 +29,7 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
+import { removeToken } from '@/utils/auth'
 
 export default {
   components: {
@@ -45,9 +46,11 @@ export default {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
-    async logout() {
-      await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    logout() {
+      removeToken()
+      this.$router.push({
+        path: '/login'
+      })
     }
   }
 }
