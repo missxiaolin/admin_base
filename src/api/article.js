@@ -77,3 +77,15 @@ export function del(data) {
     data
   })
 }
+
+/**
+ * 添加回复
+ * @returns
+ */
+export function commentAdd(data) {
+  return request({
+    url: '/adm/article/comment/add',
+    method: 'post',
+    data
+  })
+}

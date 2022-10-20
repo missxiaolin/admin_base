@@ -6,6 +6,7 @@ import router from '@/router'
 // create an axios instance
 const service = axios.create({
   baseURL: 'https://forum.sayhaiapp.com', // url = base url + request url
+  // baseURL: 'http://localhost:9001',
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
